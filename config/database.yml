@@ -17,7 +17,7 @@ test:
 
 production:
   <<: *default
-  pool: 30
+  pool: <%= ENV['DB_POOL_SIZE'] || 30 %>
   database: <%= ENV['RDS_DB_NAME'] || ENV['PG_DB_NAME'] %>
   username: <%= ENV['RDS_USERNAME'] || ENV['PG_USERNAME'] %>
   password: <%= ENV['RDS_PASSWORD'] || ENV['PG_PASSWORD'] %>
