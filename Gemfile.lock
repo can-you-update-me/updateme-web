@@ -82,6 +82,9 @@ GEM
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     hitimes (1.2.3)
+    httparty (0.13.7)
+      json (~> 1.8)
+      multi_xml (>= 0.5.2)
     i18n (0.7.0)
     json (1.8.3)
     loofah (2.0.3)
@@ -92,6 +95,7 @@ GEM
     mime-types (2.6.2)
     mini_portile (0.6.2)
     minitest (5.8.1)
+    multi_xml (0.5.5)
     ngannotate-rails (1.0.3)
       execjs
       rails (>= 3.1)
@@ -214,6 +218,7 @@ DEPENDENCIES
   binding_of_caller
   byebug
   factory_girl_rails (~> 4)
+  httparty
   ngannotate-rails (~> 1.0.2)
   pg
   pry-rails

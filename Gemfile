@@ -13,6 +13,8 @@ gem 'warden'
 
 gem 'active_model_serializers', '~> 0.8.3'
 
+gem 'httparty'
+
 gem 'redis-rails'
 gem 'sidekiq'
 gem 'puma'
