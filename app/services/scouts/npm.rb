@@ -1,5 +1,5 @@
 class Scouts::Npm < Scout
-  BASE_URI = 'registry.npmjs.org'
+  base_uri 'registry.npmjs.org'
 
   def perform
     api.get("/#{@lib.name}/latest")
