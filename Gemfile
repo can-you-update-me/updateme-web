@@ -20,6 +20,7 @@ gem 'sidekiq'
 gem 'puma'
 
 group :development, :test do
+  gem 'figaro'
   gem 'pry-rails'
   gem 'byebug'
   gem 'spring'
