@@ -20,6 +20,7 @@ module App
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
     # config.time_zone = 'Central Time (US & Canada)'
+    config.autoload_paths += %w(lib/warden)
 
     config.active_record.raise_in_transactional_callbacks = true
 
@@ -31,5 +32,9 @@ module App
     }, { expires_in: 4.weeks }
 
     config.active_job.queue_adapter = :sidekiq
+
+    config.to_prepare do
+      Warden::Strategies.add(:password, Strategies::Password)
+    end
   end
 end
