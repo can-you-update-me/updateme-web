@@ -6,4 +6,6 @@ Rails.application.routes.draw do
 
   get :register, to: 'users#new', as: :register
   post :register, to: 'users#create'
+
+  post :time_to_update, to: 'cron#time_to_update'
 end
