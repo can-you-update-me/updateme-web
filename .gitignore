@@ -36,3 +36,9 @@ bower.json
 
 # Ignore application configuration
 /config/application.yml
+
+# Generated assets
+app/assets/javascripts/*
+!app/assets/javascripts/.keep
+app/assets/stylesheets/*
+!app/assets/stylesheets/.keep
