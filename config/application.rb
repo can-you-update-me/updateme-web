@@ -24,6 +24,15 @@ module App
 
     config.active_record.raise_in_transactional_callbacks = true
 
+    config.action_mailer.smtp_settings = {
+      address: ENV['smtp_address'],
+      port: ENV['smtp_port'],
+      domain: ENV['smtp_domain'],
+      user_name: ENV['smtp_user_name'],
+      password: ENV['smtp_password'],
+      authentication: ENV['smtp_authentication']
+    }
+
     config.cache_store = :redis_store, {
       host: ENV['REDIS_HOST'],
       port: ENV['REDIS_PORT'],
