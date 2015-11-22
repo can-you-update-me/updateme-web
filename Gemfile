@@ -12,6 +12,7 @@ gem 'httparty'
 
 gem 'redis-rails'
 gem 'sidekiq'
+gem 'sidekiq-cron'
 gem 'puma'
 
 group :development, :test do
