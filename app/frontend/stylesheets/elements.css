@@ -1,0 +1,20 @@
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+blockquote {
+  &::before {
+    content: "“";
+  }
+
+  &::after {
+    content: "”";
+  }
+
+  &::before,
+  &::after {
+    font-weight: bold;
+    font-size: 1.2em;
+  }
+}

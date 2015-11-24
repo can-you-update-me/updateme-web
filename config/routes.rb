@@ -6,4 +6,6 @@ Rails.application.routes.draw do
 
   get :register, to: 'users#new', as: :register
   post :register, to: 'users#create'
+
+  root 'home#index'
 end

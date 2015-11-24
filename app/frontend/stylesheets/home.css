@@ -1,0 +1,29 @@
+.content.main {
+  padding: 24px;
+}
+
+.how-it-works {
+  text-align: center;
+  padding: 24px 24px 0;
+
+  &.p1 {
+    background-color: rgba(51, 136, 255, .3);
+  }
+
+  &.p3 {
+    background-color: rgba(255, 136, 51, .3);
+  }
+
+  &.p2 {
+    color: #777;
+    padding: 24px 24px 36px;
+  }
+
+  .subject {
+    font-size: 1.5rem;
+  }
+}
+
+.convo {
+  font-size: 2rem;
+}

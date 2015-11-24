@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>App</title>
-  <%= stylesheet_link_tag    'application', media: 'all' %>
-  <%= javascript_include_tag 'application' %>
+  <title>Go Update Me!</title>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/angular-material/1.0.0-rc4/angular-material.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/fontawesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.rawgit.com/konpa/devicon/master/devicon.min.css">
+  <%= stylesheet_link_tag 'application', media: 'all' %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body ng-app="updateme">
 
 <%= yield %>
 
+<script src="//cdn.jsdelivr.net/g/angularjs@1.4.7(angular.min.js+angular-animate.min.js+angular-aria.min.js)"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/angular-material/1.0.0-rc4/angular-material.min.js"></script>
+<%= javascript_include_tag 'application' %>
 </body>
 </html>

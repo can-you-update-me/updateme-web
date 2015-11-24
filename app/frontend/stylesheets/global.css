@@ -1,0 +1,24 @@
+@import "elements";
+@import "appearance";
+
+body {
+  font-family: sans-serif;
+}
+
+.fa {
+  vertical-align: middle;
+}
+
+.header.main {
+  padding: 0 24px;
+
+  .fa {
+    font-size: 48px;
+    padding-left: 24px;
+  }
+}
+
+.footer.main {
+  height: 256px;
+  padding: 24px;
+}
