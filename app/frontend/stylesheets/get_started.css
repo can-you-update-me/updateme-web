@@ -1,0 +1,29 @@
+.get-started {
+  .lib {
+    display: block;
+    padding: 24px;
+    margin: 24px 0;
+    width: 200px;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+  }
+
+  .lib-icon {
+    display: block;
+    color: #777;
+    font-size: 6rem;
+    padding-bottom: 12px;
+    transition: color .3s;
+  }
+
+  .lib:hover {
+    .lib-icon {
+      color: #333;
+    }
+  }
+
+  .lib-name {
+    display: block;
+  }
+}
