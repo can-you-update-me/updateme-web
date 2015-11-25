@@ -2,12 +2,18 @@
   <h1 flex>
     <a href="/">GoUpdateMe</a>
   </h1>
-  <a href="https://github.com/goupdateme/updateme" title="Fork it">
+  <md-button ng-href="https://github.com/goupdateme/updateme">
     <i class="fa fa-github"></i>
-  </a>
-  <a href="http://pochen.me" title="Who built this?">
+    <md-tooltip md-direction="bottom">
+      Fork it
+    </md-tooltip>
+  </md-button>
+  <md-button ng-href="http://pochen.me">
     <i class="fa fa-user-secret"></i>
-  </a>
+    <md-tooltip md-direction="bottom">
+      Who built this?
+    </md-tooltip>
+  </md-button>
 </md-toolbar>
 
 <md-content class="content main" layout="column" layout-align="center center">
