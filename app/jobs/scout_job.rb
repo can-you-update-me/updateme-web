@@ -8,6 +8,6 @@ end
 
 Sidekiq::Cron::Job.create(
   name: 'ScoutCronJob',
-  cron: ENV.fetch('scout_cron'),
+  cron: ENV.fetch('scout_cron', '0 0 1 * *'),
   class: 'ScoutJob'
 )
