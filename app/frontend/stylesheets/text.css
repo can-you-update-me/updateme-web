@@ -1,0 +1,19 @@
+.t-align-center {
+  text-align: center;
+}
+
+.t-align-left {
+  text-align: left;
+}
+
+.t-align-right {
+  text-align: right;
+}
+
+.t-no-deco {
+  text-decoration: none;
+}
+
+.md-accent {
+  color: rgb(14, 103, 132) !important;
+}
