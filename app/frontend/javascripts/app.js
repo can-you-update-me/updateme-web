@@ -1,5 +1,9 @@
-angular.module('updateme', ['ngAnimate', 'ngMaterial', 'ngAria'])
-.config(function($httpProvider, $mdThemingProvider, $compileProvider) {
+let Templates = {
+  home: require('../templates/home.html')
+};
+
+angular.module('updateme', ['ngAnimate', 'ngMaterial', 'ngAria', 'ngRoute'])
+.config(function($httpProvider, $mdThemingProvider, $compileProvider, $locationProvider, $routeProvider) {
   $httpProvider.defaults.headers.common['X-CSRF-Token'] =
     document.querySelector('meta[name=csrf-token]').content;
 
@@ -9,6 +13,12 @@ angular.module('updateme', ['ngAnimate', 'ngMaterial', 'ngAria'])
     .warnPalette('deep-orange');
 
   $compileProvider.debugInfoEnabled(false);
+
+  $locationProvider.html5Mode(true);
+
+  $routeProvider
+    .when('/', { templateUrl: Templates.home })
+    .otherwise({ redirectTo: '/' });
 })
 .factory('Preload', function($cacheFactory) {
   return $cacheFactory('Preload');

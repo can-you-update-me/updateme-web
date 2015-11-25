@@ -7,5 +7,7 @@ Rails.application.routes.draw do
   get :register, to: 'users#new', as: :register
   post :register, to: 'users#create'
 
+  get '*unknown', to: 'home#index'
+
   root 'home#index'
 end

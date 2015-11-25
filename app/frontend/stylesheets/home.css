@@ -1,4 +1,4 @@
-.content.main {
+.home {
   padding: 24px;
 }
 
@@ -26,4 +26,10 @@
 
 .convo {
   font-size: 2rem;
+}
+
+.home .get-started {
+  padding: 40px;
+  margin-top: 24px;
+  font-size: 3rem;
 }
