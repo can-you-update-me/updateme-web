@@ -1,6 +1,7 @@
 let Templates = {
   home: require('../templates/home.html'),
-  getStarted: require('../templates/pages/get_started.html')
+  getStarted: require('../templates/pages/get_started.html'),
+  libType: require('../templates/pages/lib_type.html')
 };
 
 angular.module('updateme', ['ngAnimate', 'ngMaterial', 'ngAria', 'ngRoute'])
@@ -20,6 +21,7 @@ angular.module('updateme', ['ngAnimate', 'ngMaterial', 'ngAria', 'ngRoute'])
   $routeProvider
     .when('/', { templateUrl: Templates.home })
     .when('/get-started', { templateUrl: Templates.getStarted })
+    .when('/libs/:libType', { templateUrl: Templates.libType })
     .otherwise({ redirectTo: '/' });
 })
 .factory('Preload', function($cacheFactory) {
@@ -36,3 +38,4 @@ angular.module('updateme', ['ngAnimate', 'ngMaterial', 'ngAria', 'ngRoute'])
 });
 
 require('./components/get_started');
+require('./components/lib_type');
