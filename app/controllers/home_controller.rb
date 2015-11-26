@@ -6,12 +6,12 @@ class HomeController < ApplicationController
         devicon: 'ruby'
       },
       {
-        name: 'Python Package',
-        devicon: 'python'
-      },
-      {
         name: 'JS Package',
         devicon: 'javascript'
+      },
+      {
+        name: 'Python Package',
+        devicon: 'python'
       },
       {
         name: 'GitHub Repo',
