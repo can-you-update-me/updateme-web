@@ -1,1 +1,19 @@
-The lib type is {{::LibType.type}}
+<md-content class="lib-type" layout="column" layout-align="center center">
+  <md-toolbar class="md-accent">
+    <h1 class="t-align-center">
+      Looking for a {{::LibType.name}}?
+    </h1>
+  </md-toolbar>
+  <md-input-container layout>
+    <i class="fa fa-search icon-search"></i>
+    <input type="text" ng-model="LibType.search" aria-label="search">
+  </md-input-container>
+  <md-list class="browse-libs">
+    <md-list-item class="lib" ng-repeat="lib in (LibType.knownLibs | filter: LibType.search | limitTo: 25)">
+      <span flex>{{::lib.name}}</span>
+      <md-button class="md-icon-button" aria-label="subscribe">
+        <i class="fa fa-plus"></i>
+      </md-button>
+    </md-list-item>
+  </md-list>
+</md-content>

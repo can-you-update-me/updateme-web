@@ -6,9 +6,17 @@ angular.module('updateme')
     restrict: 'E',
     scope: false,
     templateUrl: templateUrl,
-    controller: function($routeParams, Preload) {
-      this.libs = Preload.get('libs');
-      this.type = $routeParams.libType;
+    controller: function($routeParams, $http, Preload) {
+      let libTypes = Preload.get('libs');
+      let typeKey = $routeParams.libType;
+
+      let libType = _.find(libTypes, 'key', typeKey);
+
+      this.name = libType.name;
+
+      $http.get(`/api/libs/${libType.key}`).then(response => {
+        this.knownLibs = response.data.libs;
+      });
     },
     controllerAs: 'LibType'
   };
