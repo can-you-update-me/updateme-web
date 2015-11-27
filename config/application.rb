@@ -44,6 +44,7 @@ module App
 
     config.to_prepare do
       Warden::Strategies.add(:password, Strategies::Password)
+      Warden::Strategies.add(:session, Strategies::Session)
     end
   end
 end

@@ -12,9 +12,6 @@ class ApplicationController < ActionController::Base
   end
 
   def require_user!
-    if current_user.nil?
-      session[:redirect_path] = request.path
-      redirect_to login_path
-    end
+    warden.authenticate!(:session)
   end
 end
