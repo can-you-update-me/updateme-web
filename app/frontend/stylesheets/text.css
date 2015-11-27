@@ -10,10 +10,10 @@
   text-align: right;
 }
 
-.t-no-deco {
-  text-decoration: none;
+md-toolbar.md-accent {
+  color: rgb(14, 103, 132) !important;
 }
 
-.md-accent {
-  color: rgb(14, 103, 132) !important;
+.water-mark {
+  color: rgba(51, 51, 51, .3);
 }

@@ -23,8 +23,13 @@ body {
 }
 
 .footer.main {
+  background-color: $accent-color;
   height: 256px;
   padding: 24px;
+
+  .sponsor-banner {
+    font-size: 3rem;
+  }
 }
 
 #loading-bar .bar {
