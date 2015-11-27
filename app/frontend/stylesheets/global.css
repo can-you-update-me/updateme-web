@@ -26,3 +26,11 @@ body {
   height: 256px;
   padding: 24px;
 }
+
+#loading-bar .bar {
+  background-color: $accent-color;
+}
+
+#loading-bar-spinner .spinner-icon {
+  border-color: $accent-color transparent transparent $accent-color;
+}

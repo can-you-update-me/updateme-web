@@ -4,7 +4,7 @@ let Templates = {
   libType: require('../templates/pages/lib_type.html')
 };
 
-angular.module('updateme', ['ngAnimate', 'ngMaterial', 'ngAria', 'ngRoute'])
+angular.module('updateme', ['ngAnimate', 'ngMaterial', 'ngAria', 'ngRoute', 'angular-loading-bar'])
 .config(function($httpProvider, $mdThemingProvider, $compileProvider, $locationProvider, $routeProvider) {
   $httpProvider.defaults.headers.common['X-CSRF-Token'] =
     document.querySelector('meta[name=csrf-token]').content;
