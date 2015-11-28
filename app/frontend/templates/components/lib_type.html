@@ -6,7 +6,7 @@
   </md-toolbar>
   <md-input-container layout>
     <i class="fa fa-search icon-search"></i>
-    <input type="text" ng-model="LibType.search" aria-label="search">
+    <input type="text" ng-model="LibType.search" ng-model-options="{ debounce: 200 }" aria-label="search">
   </md-input-container>
   <md-list class="browse-libs">
     <md-list-item class="lib" ng-repeat="lib in (LibType.knownLibs | filter: LibType.search | limitTo: 25)">
