@@ -6,9 +6,12 @@ class Scout < BaseService
   logger Rails.logger, :debug, :curl
   debug_output $stderr
 
-  def initialize(lib)
+  def initialize(lib, channel: :stable)
     @lib = lib
+    @channel = channel
   end
+
+  protected
 
   def api
     self.class

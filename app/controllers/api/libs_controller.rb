@@ -5,5 +5,9 @@ module Api
         render json: type.all
       end
     end
+
+    def preview
+      render json: Lib.find(params[:id]).scout
+    end
   end
 end

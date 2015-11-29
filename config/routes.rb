@@ -18,6 +18,10 @@ Rails.application.routes.draw do
           get lib_type
         end
       end
+
+      member do
+        get :preview
+      end
     end
   end
 

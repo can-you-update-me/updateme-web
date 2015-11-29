@@ -8,6 +8,10 @@ class Scouts::Github < Scout
   )
 
   def perform
+    api.get("/repos/#{@lib.name}/readme")
+  end
+
+  def latest
     api.get("/repos/#{@lib.name}/git/refs/tags")
   end
 end

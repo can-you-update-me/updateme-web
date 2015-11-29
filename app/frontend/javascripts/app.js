@@ -38,4 +38,4 @@ angular.module('updateme', ['ngAnimate', 'ngMaterial', 'ngAria', 'ngRoute', 'ang
 });
 
 require('./components/get_started');
-require('./components/lib_type');
+require('./components/libs');
