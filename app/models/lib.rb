@@ -6,7 +6,6 @@ class Lib < ActiveRecord::Base
     Libs::GithubRepo
   ]
 
-  protected
 
   def scout
     self.class::SCOUT.perform(self)
