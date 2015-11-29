@@ -6,6 +6,7 @@ class Lib < ActiveRecord::Base
     Libs::GithubRepo
   ]
 
+  validates_uniqueness_of :name, scope: :type
 
   def scout
     self.class::SCOUT.perform(self)
