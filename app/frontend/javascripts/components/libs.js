@@ -12,6 +12,7 @@ angular.module('updateme')
 
       let libType = _.find(libTypes, 'key', typeKey);
       let previewTimeout = null;
+      let currentLib = null;
 
       this.name = libType.name;
 
@@ -22,10 +23,13 @@ angular.module('updateme')
       this.libData = 'Hover a lib to check its details';
 
       this.preview = (lib) => {
+        if (currentLib === lib) { return; }
+
         $timeout.cancel(previewTimeout);
 
         previewTimeout = $timeout(() => {
           this.libData = `Loading data about ${lib.name}...`;
+          currentLib = lib;
 
           $http.get(`/api/libs/${lib.id}/preview`).then(response => {
             if (libType.key == 'github-repo') {
