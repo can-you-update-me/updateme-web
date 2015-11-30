@@ -1,7 +1,7 @@
 let templateUrl = require('../../templates/components/libs.html');
 
 angular.module('updateme')
-.directive('libType', function() {
+.directive('libs', function() {
   return {
     restrict: 'E',
     scope: false,
@@ -44,6 +44,6 @@ angular.module('updateme')
         };
       };
     },
-    controllerAs: 'LibType'
+    controllerAs: 'Libs'
   };
 });

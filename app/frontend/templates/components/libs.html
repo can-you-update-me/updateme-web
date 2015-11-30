@@ -1,24 +1,25 @@
 <md-content class="libs" layout="column" layout-align="center center">
   <md-toolbar class="md-accent">
     <h1 class="t-align-center">
-      Looking for a {{::LibType.name}}?
+      Looking for a {{::Libs.name}}?
     </h1>
   </md-toolbar>
   <md-input-container layout>
     <i class="fa fa-search icon-search"></i>
-    <input type="text" ng-model="LibType.search" ng-model-options="{ debounce: 200 }" aria-label="search">
+    <input type="text" ng-model="Libs.search"
+        ng-model-options="{ debounce: 200 }" aria-label="search">
   </md-input-container>
   <div layout>
     <md-list class="browse-libs">
       <md-list-item class="lib"
-          ng-mouseenter="LibType.preview(lib)" ng-mouseleave="LibType.cancelPreview()"
-          ng-repeat="lib in (LibType.knownLibs | filter: LibType.search | limitTo: 10)">
+          ng-mouseenter="Libs.preview(lib)" ng-mouseleave="Libs.cancelPreview()"
+          ng-repeat="lib in (Libs.knownLibs | filter: Libs.search | limitTo: 10)">
         <md-button class="md-icon-button" aria-label="subscribe">
           <i class="fa fa-plus"></i>
         </md-button>
         <span flex>{{::lib.name}}</span>
       </md-list-item>
     </md-list>
-    <pre class="preview-lib-data" ng-bind="LibType.libData"></pre>
+    <pre class="preview-lib-data" ng-bind="Libs.libData"></pre>
   </div>
 </md-content>

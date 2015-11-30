@@ -1,7 +1,7 @@
 let Templates = {
   home: require('../templates/home.html'),
   getStarted: require('../templates/pages/get_started.html'),
-  libType: require('../templates/pages/lib_type.html')
+  libs: require('../templates/pages/libs.html')
 };
 
 angular.module('updateme', ['ngAnimate', 'ngMaterial', 'ngAria', 'ngRoute', 'angular-loading-bar'])
@@ -21,7 +21,7 @@ angular.module('updateme', ['ngAnimate', 'ngMaterial', 'ngAria', 'ngRoute', 'ang
   $routeProvider
     .when('/', { templateUrl: Templates.home })
     .when('/get-started', { templateUrl: Templates.getStarted })
-    .when('/libs/:libType', { templateUrl: Templates.libType })
+    .when('/libs/:libType', { templateUrl: Templates.libs })
     .otherwise({ redirectTo: '/' });
 })
 .factory('Preload', function($cacheFactory) {
