@@ -45,11 +45,11 @@ angular.module('updateme')
         this.preview(this.search);
       };
 
-      let scoutHandler = (response) => {
+      let scoutHandler = ({ data: libData }) => {
         if (libType.key == 'github-repo') {
-          return this.libData = atob(response.data.content);
+          return this.libData = atob(libData.content);
         }
-        this.libData = JSON.stringify(response.data, null, '  ');
+        this.libData = JSON.stringify(libData, null, '  ');
       };
 
       let scoutErrorHandler = (name) => {
@@ -88,8 +88,8 @@ angular.module('updateme')
 
       this.create = (name) => {
         Lib.create({ name: name, type: typeKey }).then(
-          response => {
-            knownLibs.push(response.data);
+          ({ data: lib }) => {
+            knownLibs.push(lib);
             this.filterLibs(name);
           },
           error => {
