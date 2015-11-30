@@ -12,7 +12,7 @@
     <md-list class="browse-libs">
       <md-list-item class="lib"
           ng-mouseenter="LibType.preview(lib)" ng-mouseleave="LibType.cancelPreview()"
-          ng-repeat="lib in (LibType.knownLibs | filter: LibType.search | limitTo: 25)">
+          ng-repeat="lib in (LibType.knownLibs | filter: LibType.search | limitTo: 10)">
         <md-button class="md-icon-button" aria-label="subscribe">
           <i class="fa fa-plus"></i>
         </md-button>
