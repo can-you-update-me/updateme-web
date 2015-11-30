@@ -7,20 +7,18 @@ Rails.application.routes.draw do
   get :register, to: 'users#new', as: :register
   post :register, to: 'users#create'
 
-  lib_types = Lib::Types.map do |type|
-    type.to_s.demodulize.underscore.dasherize
-  end
-
   namespace :api do
-    resources :libs, only: [:index] do
+    resources :libs, only: [:create] do
       collection do
-        lib_types.each do |lib_type|
-          get lib_type
+        Lib::Slugs.each do |slug|
+          get slug
         end
+
+        post 'preview' => :scout
       end
 
       member do
-        get :preview
+        post :scout
       end
     end
   end

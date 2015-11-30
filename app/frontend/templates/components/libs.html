@@ -6,20 +6,37 @@
   </md-toolbar>
   <md-input-container layout>
     <i class="fa fa-search icon-search"></i>
-    <input type="text" ng-model="Libs.search"
-        ng-model-options="{ debounce: 200 }" aria-label="search">
+    <input type="text" ng-model="Libs.search" ng-change="Libs.filterLibs(Libs.search)"
+        ng-model-options="{ debounce: 400 }" aria-label="search">
   </md-input-container>
-  <div layout>
+  <div class="listing" ng-if="Libs.resultExist" layout>
     <md-list class="browse-libs">
+      <md-subheader class="md-primary">
+        click <i class="fa fa-plus"></i> to subscribe
+      </md-subheader>
       <md-list-item class="lib"
-          ng-mouseenter="Libs.preview(lib)" ng-mouseleave="Libs.cancelPreview()"
-          ng-repeat="lib in (Libs.knownLibs | filter: Libs.search | limitTo: 10)">
+          ng-mouseenter="Libs.scout(lib)" ng-mouseleave="Libs.cancelScout()"
+          ng-repeat="lib in (Libs.filteredLibs | limitTo: 10)">
         <md-button class="md-icon-button" aria-label="subscribe">
           <i class="fa fa-plus"></i>
         </md-button>
         <span flex>{{::lib.name}}</span>
       </md-list-item>
+      <md-button class="md-warn md-raised" ng-show="Libs.notFound()" ng-click="Libs.forceSearch()">
+        Not in the list
+      </md-button>
     </md-list>
-    <pre class="preview-lib-data" ng-bind="Libs.libData"></pre>
+    <pre class="lib-data" ng-bind="Libs.libData"></pre>
+  </div>
+  <div class="not-found" ng-if="!Libs.resultExist" layout="column" layout-align="center center">
+    <p>
+      This guy does not seem to exist in the database at the moment.
+      Please make sure the name is complete and correct, and click the
+      button when the data is successfully loaded.
+    </p>
+    <md-button class="md-primary md-raised" ng-disabled="!Libs.goodToAdd" ng-click="Libs.create(Libs.search)">
+      Add it now
+    </md-button>
+    <pre class="lib-data" ng-bind="Libs.libData"></pre>
   </div>
 </md-content>

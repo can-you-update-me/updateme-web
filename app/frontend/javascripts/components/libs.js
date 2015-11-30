@@ -6,42 +6,96 @@ angular.module('updateme')
     restrict: 'E',
     scope: false,
     templateUrl: templateUrl,
-    controller: function($routeParams, $http, $sce, $timeout, Preload) {
+    controller: function($routeParams, $timeout, Preload, Lib) {
       let libTypes = Preload.get('libs');
       let typeKey = $routeParams.libType;
 
       let libType = _.find(libTypes, 'key', typeKey);
-      let previewTimeout = null;
+      let knownLibs = null;
+
+      let scoutTimeout = null;
       let currentLib = null;
 
       this.name = libType.name;
-
-      $http.get(`/api/libs/${libType.key}`).then(response => {
-        this.knownLibs = response.data.libs;
-      });
-
+      this.resultExist = true;
       this.libData = 'Hover a lib to check its details';
 
-      this.preview = (lib) => {
+      Lib.list(libType.key).then(response => {
+        this.filteredLibs = knownLibs = response.data.libs;
+      });
+
+      this.filterLibs = (name) => {
+        this.resultExist = true;
+        this.filteredLibs = _.filter(knownLibs, lib => _.includes(lib.name, name));
+
+        if (!this.filteredLibs.length) {
+          this.resultExist = false;
+          this.preview(name);
+        }
+      };
+
+      this.notFound = () => {
+        if (!this.search) { return false; }
+
+        return !_.any(knownLibs, lib => lib.name == this.search);
+      };
+
+      this.forceSearch = () => {
+        this.resultExist = false;
+        this.preview(this.search);
+      };
+
+      let scoutHandler = (response) => {
+        if (libType.key == 'github-repo') {
+          return this.libData = atob(response.data.content);
+        }
+        this.libData = JSON.stringify(response.data, null, '  ');
+      };
+
+      let scoutErrorHandler = (name) => {
+        this.libData = `Failed to load the details about ${name}, ` +
+          'file an issue if you believe something is wrong';
+      };
+
+      this.scout = (lib) => {
         if (currentLib === lib) { return; }
 
-        $timeout.cancel(previewTimeout);
+        $timeout.cancel(scoutTimeout);
 
-        previewTimeout = $timeout(() => {
+        scoutTimeout = $timeout(() => {
           this.libData = `Loading data about ${lib.name}...`;
           currentLib = lib;
 
-          $http.get(`/api/libs/${lib.id}/preview`).then(response => {
-            if (libType.key == 'github-repo') {
-              return this.libData = atob(response.data.content);
-            }
-            this.libData = JSON.stringify(response.data, null, '  ');
-          });
+          Lib.scout(lib).then(scoutHandler, _.partial(scoutErrorHandler, lib.name));
         }, 800);
+      };
 
-        this.cancelPreview = () => {
-          $timeout.cancel(previewTimeout);
-        };
+      this.cancelScout = () => {
+        $timeout.cancel(scoutTimeout);
+      };
+
+      this.preview = (name) => {
+        this.libData = `Trying hard to load this ${libType.name}: ${name}...`;
+        this.goodToAdd = false;
+
+        Lib.preview({ name: name, type: typeKey }).then(
+          response => {
+            scoutHandler(response);
+            this.goodToAdd = true;
+          },
+          _.partial(scoutErrorHandler, name));
+      };
+
+      this.create = (name) => {
+        Lib.create({ name: name, type: typeKey }).then(
+          response => {
+            knownLibs.push(response.data);
+            this.filterLibs(name);
+          },
+          error => {
+            console.error(error);
+          }
+        );
       };
     },
     controllerAs: 'Libs'

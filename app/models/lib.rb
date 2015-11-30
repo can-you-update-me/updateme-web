@@ -4,7 +4,13 @@ class Lib < ActiveRecord::Base
     Libs::JsPackage,
     Libs::PythonPackage,
     Libs::GithubRepo
-  ]
+  ].freeze
+
+  Slugs = Types.map do |type|
+    type.to_s.demodulize.underscore.dasherize
+  end.freeze
+
+  SlugMap = Slugs.zip(Types).to_h.freeze
 
   validates_uniqueness_of :name, scope: :type
 

@@ -6,8 +6,26 @@ module Api
       end
     end
 
-    def preview
-      render json: Lib.find(params[:id]).scout
+    def create
+      render json: lib_of_type.create!(lib_params)
+    end
+
+    def scout
+      if id = params[:id]
+        render json: Lib.find(id).scout
+      else
+        render json: lib_of_type.new(name: params[:name]).scout
+      end
+    end
+
+    private
+
+    def lib_params
+      params.permit(:name)
+    end
+
+    def lib_of_type
+      Lib::SlugMap[params[:type]]
     end
   end
 end

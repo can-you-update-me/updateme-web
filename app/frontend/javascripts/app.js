@@ -37,5 +37,7 @@ angular.module('updateme', ['ngAnimate', 'ngMaterial', 'ngAria', 'ngRoute', 'ang
   };
 });
 
+require('./models/lib');
+
 require('./components/get_started');
 require('./components/libs');
