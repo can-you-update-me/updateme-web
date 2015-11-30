@@ -91,6 +91,7 @@ angular.module('updateme')
           ({ data: lib }) => {
             knownLibs.push(lib);
             this.filterLibs(name);
+            currentLib = lib;
           },
           error => {
             console.error(error);
