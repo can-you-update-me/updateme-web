@@ -5,8 +5,8 @@ angular.module('updateme')
   return {
     restrict: 'E',
     scope: false,
-    templateUrl: templateUrl,
-    controller: function($routeParams, $timeout, Preload, Lib) {
+    templateUrl,
+    controller($routeParams, $timeout, Preload, Lib) {
       let libTypes = Preload.get('libs');
       let typeKey = $routeParams.libType;
 
@@ -78,7 +78,7 @@ angular.module('updateme')
         this.libData = `Trying hard to load this ${libType.name}: ${name}...`;
         this.goodToAdd = false;
 
-        Lib.preview({ name: name, type: typeKey }).then(
+        Lib.preview({ name, type: typeKey }).then(
           response => {
             scoutHandler(response);
             this.goodToAdd = true;
@@ -87,7 +87,7 @@ angular.module('updateme')
       };
 
       this.create = (name) => {
-        Lib.create({ name: name, type: typeKey }).then(
+        Lib.create({ name, type: typeKey }).then(
           ({ data: lib }) => {
             knownLibs.push(lib);
             this.filterLibs(name);
