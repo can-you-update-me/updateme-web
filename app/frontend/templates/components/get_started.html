@@ -3,7 +3,7 @@
     <h1 class="t-align-center">Currently Available Libs</h1>
   </md-toolbar>
   <div class="libs-container" layout layout-align="center center" layout-wrap>
-    <md-button class="lib" flex="20"
+    <md-button class="lib" flex="20" aria-label="button"
         ng-repeat="lib in GetStarted.libs" ng-href="/libs/{{::lib.key}}">
       <i class="lib-icon devicon-{{::lib.devicon}}-plain"></i>
       <span class="lib-name" ng-bind="::lib.name"></span>
