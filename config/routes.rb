@@ -1,12 +1,6 @@
 Rails.application.routes.draw do
   get :ping, to: 'health#ping'
 
-  get :login, to: 'sessions#new', as: :login
-  post :login, to: 'sessions#create'
-
-  get :register, to: 'users#new', as: :register
-  post :register, to: 'users#create'
-
   namespace :api do
     resources :libs, only: [:create] do
       collection do
@@ -20,6 +14,15 @@ Rails.application.routes.draw do
       member do
         post :scout
       end
+    end
+
+    resources :users, only: [:create]
+    resources :sessions, only: [:create, :destroy]
+  end
+
+  resources :users, only: [] do
+    member do
+      get 'verify/:token' => :verify, as: :verify
     end
   end
 
