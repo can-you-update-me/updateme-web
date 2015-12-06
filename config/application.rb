@@ -43,6 +43,7 @@ module App
     config.active_job.queue_adapter = :sidekiq
 
     config.to_prepare do
+      Warden::Strategies.add(:jwt, Strategies::JWT)
       Warden::Strategies.add(:password, Strategies::Password)
       Warden::Strategies.add(:session, Strategies::Session)
     end
