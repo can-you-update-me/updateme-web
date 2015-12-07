@@ -47,6 +47,11 @@ angular.module('updateme', ['ngAnimate', 'ngMaterial', 'ngAria', 'ngRoute', 'ang
     .when('/login', { templateUrl: Templates.login })
     .otherwise({ redirectTo: '/' });
 })
+.run(function($rootScope, $location) {
+  $rootScope.$on('$routeChangeError', function() {
+    $location.url('/login');
+  });
+})
 .factory('Preload', function($cacheFactory) {
   return $cacheFactory('Preload');
 })
