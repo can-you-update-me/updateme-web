@@ -1,7 +1,7 @@
 module Api
   class SessionsController < BaseController
     def create
-      warden.authenticate!(:password)
+      warden.authenticate!(:password, store: false)
       head :ok
     end
 
