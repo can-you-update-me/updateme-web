@@ -1,7 +1,8 @@
 let Templates = {
   home: require('../templates/home.html'),
   getStarted: require('../templates/pages/get_started.html'),
-  libs: require('../templates/pages/libs.html')
+  libs: require('../templates/pages/libs.html'),
+  login: require('../templates/pages/login.html')
 };
 
 angular.module('updateme', ['ngAnimate', 'ngMaterial', 'ngAria', 'ngRoute', 'angular-loading-bar'])
@@ -43,6 +44,7 @@ angular.module('updateme', ['ngAnimate', 'ngMaterial', 'ngAria', 'ngRoute', 'ang
     .when('/', { templateUrl: Templates.home })
     .when('/get-started', { templateUrl: Templates.getStarted })
     .when('/libs/:libType', { templateUrl: Templates.libs })
+    .when('/login', { templateUrl: Templates.login })
     .otherwise({ redirectTo: '/' });
 })
 .factory('Preload', function($cacheFactory) {
@@ -58,7 +60,13 @@ angular.module('updateme', ['ngAnimate', 'ngMaterial', 'ngAria', 'ngRoute', 'ang
   };
 });
 
+require('./user');
+
 require('./models/lib');
 
 require('./components/get_started');
 require('./components/libs');
+require('./components/login');
+
+require('./utils/local_storage');
+require('./utils/quick_toast');
