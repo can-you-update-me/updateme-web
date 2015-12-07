@@ -1,4 +1,6 @@
 class Strategies::Password < Warden::Strategies::Base
+  using JsonParams
+
   def valid?
     params['email'] && params['password']
   end
