@@ -3,7 +3,8 @@ module Api
     def create
       user = User.create!(user_params)
       warden.authenticate!(:password, store: false)
-      render json: user
+
+      render json: WhoAmI.perform(current_user)
     end
 
     private
