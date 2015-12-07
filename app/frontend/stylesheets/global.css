@@ -17,6 +17,10 @@ body {
 .header.main {
   padding: 0 24px;
 
+  .brand {
+    margin-right: 24px;
+  }
+
   .fa {
     font-size: 48px;
     padding: 12px;
