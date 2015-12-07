@@ -2,7 +2,8 @@ $primary-color: #0277BD;
 $accent-color: #FFD740;
 
 @import "elements";
-@import "appearance";
+@import "spacing";
+@import "display";
 @import "text";
 
 body {
@@ -15,6 +16,10 @@ body {
 
 .header.main {
   padding: 0 24px;
+
+  .brand {
+    margin-right: 24px;
+  }
 
   .fa {
     font-size: 48px;

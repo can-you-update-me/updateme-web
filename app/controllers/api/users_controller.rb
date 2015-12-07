@@ -2,8 +2,9 @@ module Api
   class UsersController < BaseController
     def create
       user = User.create!(user_params)
-      warden.authenticate!(:password)
-      render json: user
+      warden.authenticate!(:password, store: false)
+
+      render json: WhoAmI.perform(current_user)
     end
 
     private

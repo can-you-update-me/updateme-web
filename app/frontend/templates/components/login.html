@@ -1,0 +1,46 @@
+<section class="login v-margin-md" layout layout-align="center center">
+  <form class="login-form" layout="column" ng-if="Login.existingUser">
+    <md-input-container>
+      <label>Email</label>
+      <input type="email" name="email" ng-model="Login.params.email" required>
+    </md-input-container>
+    <md-input-container>
+      <label>Password</label>
+      <input type="password" ng-model="Login.params.password" required>
+    </md-input-container>
+    <md-button type="submit" class="md-primary md-raised" ng-click="Login.login()">
+      Login
+    </md-button>
+    <md-button type="button" class="md-raised">
+      <i class="devicon-github-plain"></i>
+      Login with GitHub
+    </md-button>
+    <md-button class="md-primary" ng-click="Login.switch()">
+      Sign up
+    </md-button>
+  </form>
+  <form class="signup-form" layout="column" ng-if="!Login.existingUser">
+    <md-input-container>
+      <label>Name</label>
+      <input type="text" name="name" ng-model="Login.params.name" required>
+    </md-input-container>
+    <md-input-container>
+      <label>Email</label>
+      <input type="email" name="email" ng-model="Login.params.email" required>
+    </md-input-container>
+    <md-input-container>
+      <label>Password</label>
+      <input type="password" ng-model="Login.params.password" required>
+    </md-input-container>
+    <md-input-container>
+      <label>Confirm Password</label>
+      <input type="password" ng-model="Login.params.passwordConfirmation" required>
+    </md-input-container>
+    <md-button type="submit" class="md-primary md-raised" ng-click="Login.signup()">
+      Sign up
+    </md-button>
+    <md-button type="button" class="md-primary" ng-click="Login.switch()">
+      Login
+    </md-button>
+  </form>
+</section>
