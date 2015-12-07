@@ -9,6 +9,27 @@ angular.module('updateme', ['ngAnimate', 'ngMaterial', 'ngAria', 'ngRoute', 'ang
   $httpProvider.defaults.headers.common['X-CSRF-Token'] =
     document.querySelector('meta[name=csrf-token]').content;
 
+  $httpProvider.interceptors.push(function(Me) {
+    return {
+      request(config) {
+        config.headers.Authorization = Me.token;
+
+        if (typeof config.data == 'object') {
+          config.data = _.mapKeys(config.data, (_v, k) => _.snakeCase(k));
+        }
+
+        return config;
+      },
+      response(response) {
+        if (typeof response.data == 'object') {
+          response.data = _.mapKeys(response.data, (_v, k) => _.camelCase(k));
+        }
+
+        return response;
+      }
+    };
+  });
+
   $mdThemingProvider.theme('default')
     .primaryPalette('light-blue', { default: '800' })
     .accentPalette('amber')
