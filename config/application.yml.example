@@ -1,0 +1,13 @@
+host: goupdate.me
+smtp_address: smtp.mailgun.org
+smtp_port: '587'
+smtp_domain: goupdate.me
+smtp_username: postmaster@goupdate.me
+smtp_password: add_your_own
+smtp_authentication: plain
+mailgun_api_key: add_your_own
+jwt_secret: generate_your_own
+jwt_algorithm: HS256
+github_app_name: add_your_own
+github_client_id: add_your_own
+github_client_secret: add_your_own
