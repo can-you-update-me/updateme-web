@@ -1,7 +1,7 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  pool: 5
+  pool: 20
   username: postgres
   password: password
   host: db
@@ -17,7 +17,7 @@ test:
 
 production:
   <<: *default
-  pool: <%= ENV['DB_POOL_SIZE'] || 30 %>
+  pool: <%= ENV['DB_POOL_SIZE'] || 50 %>
   database: <%= ENV['RDS_DB_NAME'] || ENV['PG_DB_NAME'] %>
   username: <%= ENV['RDS_USERNAME'] || ENV['PG_USERNAME'] %>
   password: <%= ENV['RDS_PASSWORD'] || ENV['PG_PASSWORD'] %>
