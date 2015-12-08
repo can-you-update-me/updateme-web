@@ -36,8 +36,7 @@ module App
     config.cache_store = :redis_store, {
       host: ENV['REDIS_HOST'],
       port: ENV['REDIS_PORT'],
-      db: 1,
-      namespace: 'cache'
+      db: 1
     }, { expires_in: 4.weeks }
 
     config.active_job.queue_adapter = :sidekiq
