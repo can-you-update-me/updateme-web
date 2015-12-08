@@ -28,7 +28,7 @@ module App
       address: ENV['smtp_address'],
       port: ENV['smtp_port'],
       domain: ENV['smtp_domain'],
-      user_name: ENV['smtp_user_name'],
+      user_name: ENV['smtp_username'],
       password: ENV['smtp_password'],
       authentication: ENV['smtp_authentication']
     }
