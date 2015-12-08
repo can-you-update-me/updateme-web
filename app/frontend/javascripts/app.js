@@ -54,7 +54,7 @@ angular.module('updateme', ['ngAnimate', 'ngMaterial', 'ngAria', 'ngRoute', 'ang
   return {
     restrict: 'A',
     scope: false,
-    link(scope, elem, attrs) {
+    compile(elem, attrs) {
       Preload.put(attrs.jsonPreload, JSON.parse(elem.html()));
     }
   };
