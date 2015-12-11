@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>GoUpdateMe OAuth</title>
+</head>
+<body>
+
+You are connected, this window will be closed shortly...
+
+<script>
+  window.addEventListener('message', function(event) {
+    event.source.postMessage(<%= who_am_i %>, event.origin);
+  });
+</script>
+
+</body>
+</html>
