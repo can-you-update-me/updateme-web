@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   get :ping, to: 'health#ping'
 
+  scope :callbacks, controller: :callbacks do
+    get :github
+  end
+
   namespace :api do
     resources :libs, only: [:create] do
       collection do

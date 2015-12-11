@@ -6,7 +6,7 @@ angular.module('updateme')
     restrict: 'E',
     scope: false,
     templateUrl,
-    controller($location, User, QuickToast) {
+    controller($location, User, Oauth, QuickToast) {
       this.existingUser = true;
 
       this.switch = () => {
@@ -28,6 +28,13 @@ angular.module('updateme')
         User.signup(this.params).then(
           redirectHome,
           () => { QuickToast('Failed to sign up'); }
+        );
+      };
+
+      this.oauth = (service) => {
+        Oauth(service).then(
+          redirectHome,
+          () => { QuickToast(`Oauth with ${service} failed`); }
         );
       };
     },

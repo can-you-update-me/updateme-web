@@ -70,3 +70,4 @@ require('./components/login');
 
 require('./utils/local_storage');
 require('./utils/quick_toast');
+require('./utils/oauth');
