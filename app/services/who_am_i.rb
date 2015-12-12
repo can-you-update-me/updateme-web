@@ -23,6 +23,6 @@ class WhoAmI < BaseService
   private
 
   def exp
-    Time.now + 7.days
+    (Time.now + 7.days).to_i
   end
 end

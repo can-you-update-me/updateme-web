@@ -10,8 +10,10 @@ class Strategies::JWT < Warden::Strategies::Base
       ENV['jwt_algorithm']
     )
     user = User.find_by(id: data.fetch('user_id'))
-    user.nil? ? success!(user) : fail!('Wrong authorization token')
+    user.present? ? success!(user) : fail!('Wrong authorization token')
   rescue JWT::ExpiredSignature
     fail!('Expired token')
+  rescue JWT::VerificationError
+    fail!('Verification failed')
   end
 end
