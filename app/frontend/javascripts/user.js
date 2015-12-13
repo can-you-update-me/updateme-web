@@ -1,5 +1,5 @@
 angular.module('updateme')
-.factory('User', function($http, Me) {
+.factory('User', function($http, $q, Me) {
   let cacheMe = (response) => {
     Me.cache(response.data);
   };
@@ -12,7 +12,7 @@ angular.module('updateme')
       return $http.post('/api/sessions', params).then(cacheMe);
     },
     logout() {
-      return $http.post('/api/sessions').finally(() => { Me.cache({}); });
+      return $q(() => { Me.cache({}); });
     }
   };
 
