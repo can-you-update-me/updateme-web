@@ -4,7 +4,6 @@ class OauthClient < BaseService
   format :json
   headers 'Accept' => 'application/json'
   logger Rails.logger, :debug, :curl
-  debug_output $stderr
 
   attr_reader :code
 
