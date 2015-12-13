@@ -4,7 +4,6 @@ class Scout < BaseService
   format :json
   headers 'Accept' => 'application/json'
   logger Rails.logger, :debug, :curl
-  debug_output $stderr
 
   def initialize(lib, channel: :stable)
     @lib = lib

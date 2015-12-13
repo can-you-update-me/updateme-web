@@ -63,6 +63,7 @@ angular.module('updateme', ['ngAnimate', 'ngMaterial', 'ngAria', 'ngRoute', 'ang
 require('./user');
 
 require('./models/lib');
+require('./models/subscription');
 
 require('./components/get_started');
 require('./components/libs');
