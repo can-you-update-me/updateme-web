@@ -6,11 +6,6 @@ module Api
       render json: WhoAmI.perform(current_user)
     end
 
-    def destroy
-      warden.logout
-      head :ok
-    end
-
     def fail
       head :unauthorized
     end

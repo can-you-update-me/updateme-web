@@ -1,5 +1,5 @@
 angular.module('updateme')
-.factory('User', function($http, Me) {
+.factory('User', function($http, $q, $location, Me) {
   let cacheMe = (response) => {
     Me.cache(response.data);
   };
@@ -12,7 +12,9 @@ angular.module('updateme')
       return $http.post('/api/sessions', params).then(cacheMe);
     },
     logout() {
-      return $http.post('/api/sessions').finally(() => { Me.cache({}); });
+      Me.cache({});
+      $location.url('/');
+      return $q.resolve();
     }
   };
 
@@ -23,10 +25,13 @@ angular.module('updateme')
   let { name, email, token } = cachedInfo.get('me', {});
 
   return {
-    name,
-    email,
-    token,
+    attrs: {
+      name,
+      email,
+      token
+    },
     cache(data) {
+      _.assign(this.attrs, _.mapValues(this.attrs, (_v, k) => data[k]));
       cachedInfo.put('me', data);
     }
   };

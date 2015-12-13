@@ -19,6 +19,7 @@
           ng-repeat="lib in (Libs.filteredLibs | limitTo: 10)">
         <md-button class="md-icon-button" aria-label="subscribe">
           <i class="fa fa-plus"></i>
+          <md-tooltip>Subscribe</md-tooltip>
         </md-button>
         <span flex>{{::lib.name}}</span>
       </md-list-item>
