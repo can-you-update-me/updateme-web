@@ -39,8 +39,10 @@ body {
 
 #loading-bar .bar {
   background-color: $accent-color;
+  box-shadow: 0 0 5px #000;
 }
 
 #loading-bar-spinner .spinner-icon {
   border-color: $accent-color transparent transparent $accent-color;
+  box-shadow: 0 0 5px rgba(0, 0, 0, .1);
 }
