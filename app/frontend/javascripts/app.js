@@ -13,7 +13,7 @@ angular.module('updateme', ['ngAnimate', 'ngMaterial', 'ngAria', 'ngRoute', 'ang
   $httpProvider.interceptors.push(function(Me) {
     return {
       request(config) {
-        config.headers.Authorization = Me.token;
+        config.headers.Authorization = Me.attrs.token;
 
         if (typeof config.data == 'object') {
           config.data = _.mapKeys(config.data, (_v, k) => _.snakeCase(k));
@@ -40,10 +40,16 @@ angular.module('updateme', ['ngAnimate', 'ngMaterial', 'ngAria', 'ngRoute', 'ang
 
   $locationProvider.html5Mode(true);
 
+  let requireUser = {
+    canAccess: ['$q', 'Me', ($q, Me) => {
+      return Me.attrs.token ? $q.resolve(true) : $q.reject();
+    }]
+  };
+
   $routeProvider
     .when('/', { templateUrl: Templates.home })
-    .when('/get-started', { templateUrl: Templates.getStarted })
-    .when('/libs/:libType', { templateUrl: Templates.libs })
+    .when('/get-started', { templateUrl: Templates.getStarted, resolve: requireUser })
+    .when('/libs/:libType', { templateUrl: Templates.libs, resolve: requireUser })
     .when('/login', { templateUrl: Templates.login })
     .otherwise({ redirectTo: '/' });
 })
@@ -73,6 +79,7 @@ require('./models/subscription');
 require('./components/get_started');
 require('./components/libs');
 require('./components/login');
+require('./components/profile');
 
 require('./utils/local_storage');
 require('./utils/quick_toast');
