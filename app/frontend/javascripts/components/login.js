@@ -6,34 +6,34 @@ angular.module('updateme')
     restrict: 'E',
     scope: false,
     templateUrl,
-    controller($location, User, Oauth, QuickToast) {
+    controller($location, User, Oauth, Me, QuickToast) {
       this.existingUser = true;
 
       this.switch = () => {
         this.existingUser = !this.existingUser;
       };
 
-      let redirectHome = () => {
-        $location.url('/');
+      let redirectNextOrHome = () => {
+        $location.url(Me.session.nextURL || '/');
       };
 
       this.login = () => {
         User.login(this.params).then(
-          redirectHome,
+          redirectNextOrHome,
           () => { QuickToast('Failed to login'); }
         );
       };
 
       this.signup = () => {
         User.signup(this.params).then(
-          redirectHome,
+          redirectNextOrHome,
           () => { QuickToast('Failed to sign up'); }
         );
       };
 
       this.oauth = (service) => {
         Oauth(service).then(
-          redirectHome,
+          redirectNextOrHome,
           () => { QuickToast(`Oauth with ${service} failed`); }
         );
       };

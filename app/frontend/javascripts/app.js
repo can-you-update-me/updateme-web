@@ -41,8 +41,9 @@ angular.module('updateme', ['ngAnimate', 'ngMaterial', 'ngAria', 'ngRoute', 'ang
   $locationProvider.html5Mode(true);
 
   let requireUser = {
-    canAccess: ['$q', 'Me', ($q, Me) => {
-      return Me.attrs.token ? $q.resolve(true) : $q.reject();
+    canAccess: ['$q', '$route', 'Me', ($q, $route, Me) => {
+      Me.session.nextURL = $route.current.$$route.originalPath;
+      return Me.attrs.token ? $q.resolve() : $q.reject();
     }]
   };
 

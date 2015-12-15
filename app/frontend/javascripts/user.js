@@ -13,6 +13,7 @@ angular.module('updateme')
     },
     logout() {
       Me.cache({});
+      Me.session = {};
       $location.url('/');
       return $q.resolve();
     }
@@ -30,6 +31,7 @@ angular.module('updateme')
       email,
       token
     },
+    session: {},
     cache(data) {
       _.assign(this.attrs, _.mapValues(this.attrs, (_v, k) => data[k]));
       cachedInfo.put('me', data);
