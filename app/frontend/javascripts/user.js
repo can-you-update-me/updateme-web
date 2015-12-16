@@ -27,7 +27,7 @@ angular.module('updateme')
 
   return {
     attrs: cachedAttrs,
-    session: {},
+    session: { nextPage: {} },
     cache(attrs) {
       this.attrs = attrs;
       cachedInfo.put('me', attrs);

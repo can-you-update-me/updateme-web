@@ -42,14 +42,29 @@ angular.module('updateme', ['ngAnimate', 'ngMaterial', 'ngAria', 'ngRoute', 'ang
 
   let requireUser = {
     canAccess: ['$q', '$route', 'Me', ($q, $route, Me) => {
-      Me.session.nextURL = $route.current.$$route.originalPath;
-      return Me.attrs.token ? $q.resolve() : $q.reject();
+      if (Me.attrs.token) { return $q.resolve(); }
+
+      Me.session.nextPage = {
+        url: $route.current.$$route.originalPath,
+        params: $route.current.pathParams
+      };
+
+      return $q.reject();
+    }],
+    updateParams: ['$q', '$route', 'Me', ($q, $route, Me) => {
+      if (Me.attrs.token &&
+          Me.session.nextPage.url == $route.current.$$route.originalPath) {
+        $route.updateParams(Me.session.nextPage.params);
+        Me.session.nextPage = {};
+      }
+
+      return $q.resolve();
     }]
   };
 
   $routeProvider
     .when('/', { templateUrl: Templates.home })
-    .when('/get-started', { templateUrl: Templates.getStarted, resolve: requireUser })
+    .when('/get-started', { templateUrl: Templates.getStarted })
     .when('/libs/:libType', { templateUrl: Templates.libs, resolve: requireUser })
     .when('/login', { templateUrl: Templates.login })
     .otherwise({ redirectTo: '/' });
