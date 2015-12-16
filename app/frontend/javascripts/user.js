@@ -23,18 +23,14 @@ angular.module('updateme')
 })
 .factory('Me', function(LocalStorage) {
   let cachedInfo = LocalStorage('User');
-  let { name, email, token } = cachedInfo.get('me', {});
+  let cachedAttrs = cachedInfo.get('me', {});
 
   return {
-    attrs: {
-      name,
-      email,
-      token
-    },
+    attrs: cachedAttrs,
     session: {},
-    cache(data) {
-      _.assign(this.attrs, _.mapValues(this.attrs, (_v, k) => data[k]));
-      cachedInfo.put('me', data);
+    cache(attrs) {
+      this.attrs = attrs;
+      cachedInfo.put('me', attrs);
     }
   };
 });

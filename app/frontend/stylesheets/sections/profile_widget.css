@@ -1,0 +1,11 @@
+.profile-widget {
+  cursor: pointer;
+}
+
+.profile-link {
+  height: 84px;
+
+  .md-button {
+    line-height: 24px;
+  }
+}

@@ -1,0 +1,21 @@
+<md-menu class="profile-widget" ng-if="Profile.attrs.token"
+    md-position-mode="target-right target" md-offset="0 80">
+  <div ng-click="$mdOpenMenu($event)">
+    <img class="circle" ng-src="{{Profile.attrs.avatarURL}}" alt="avatar">
+  </div>
+  <md-menu-content>
+    <md-menu-item class="profile-link">
+      <md-button>
+        <div layout="column">
+          {{Profile.attrs.name}}
+          <small>{{Profile.attrs.email}}</small>
+        </div>
+      </md-button>
+    </md-menu-item>
+    <md-menu-item>
+      <md-button ng-click="Profile.logout()">
+        logout
+      </md-button>
+    </md-menu-item>
+  </md-menu-content>
+</md-menu>

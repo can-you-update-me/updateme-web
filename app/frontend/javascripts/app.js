@@ -80,7 +80,7 @@ require('./models/subscription');
 require('./components/get_started');
 require('./components/libs');
 require('./components/login');
-require('./components/profile');
+require('./components/profile_widget');
 
 require('./utils/local_storage');
 require('./utils/quick_toast');

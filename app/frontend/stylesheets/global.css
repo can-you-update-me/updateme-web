@@ -5,6 +5,7 @@ $accent-color: #FFD740;
 @import "spacing";
 @import "display";
 @import "text";
+@import "utils";
 
 body {
   font-family: sans-serif;
