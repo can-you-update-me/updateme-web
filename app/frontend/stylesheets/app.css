@@ -1,5 +1,6 @@
 @import "global";
-@import "home";
-@import "get_started";
-@import "libs";
-@import "login";
+
+@import "sections/home";
+@import "sections/get_started";
+@import "sections/libs";
+@import "sections/login";
