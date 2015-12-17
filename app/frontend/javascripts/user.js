@@ -28,6 +28,10 @@ angular.module('updateme')
   return {
     attrs: cachedAttrs,
     session: { nextPage: {} },
+    update(attrs) {
+      _.assign(this.attrs, attrs);
+      this.cache(this.attrs);
+    },
     cache(attrs) {
       this.attrs = attrs;
       cachedInfo.put('me', attrs);
