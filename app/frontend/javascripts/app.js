@@ -11,20 +11,28 @@ angular.module('updateme', ['ngAnimate', 'ngMaterial', 'ngAria', 'ngRoute', 'ang
     document.querySelector('meta[name=csrf-token]').content;
 
   $httpProvider.interceptors.push(function(Me) {
+    let onlyCallOnObject = (func, data) => {
+      if (typeof data !== 'object') { return data; }
+      return func(data);
+    };
+
+    let deepSnakeKeys = _.partial(onlyCallOnObject, data => {
+      return _(data).map((v, k) => [_.snakeCase(k), deepSnakeKeys(v)]).object().value();
+    });
+
+    let deepCamelKeys = _.partial(onlyCallOnObject, data => {
+      return _(data).map((v, k) => [_.camelCase(k), deepCamelKeys(v)]).object().value();
+    });
+
     return {
       request(config) {
         config.headers.Authorization = Me.attrs.token;
-
-        if (typeof config.data == 'object') {
-          config.data = _.mapKeys(config.data, (_v, k) => _.snakeCase(k));
-        }
+        config.data = deepSnakeKeys(config.data);
 
         return config;
       },
       response(response) {
-        if (typeof response.data == 'object') {
-          response.data = _.mapKeys(response.data, (_v, k) => _.camelCase(k));
-        }
+        response.data = deepCamelKeys(response.data);
 
         return response;
       }
