@@ -7,7 +7,7 @@ module Api
     end
 
     def create
-      render json: Subscription.create!(subscription_params)
+      render json: current_user.subscriptions.create!(subscription_params)
     end
 
     def destroy
@@ -18,7 +18,7 @@ module Api
     private
 
     def subscription_params
-      params.permit(:lib_id).merge(user: current_user)
+      params.permit(:lib_id, :channel)
     end
   end
 end
