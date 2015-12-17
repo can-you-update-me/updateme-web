@@ -11,8 +11,9 @@ angular.module('updateme')
       let typeKey = $routeParams.libType;
 
       let libType = _.find(libTypes, 'key', typeKey);
-      let knownLibs = null;
+      if (!libType) { return; }
 
+      let knownLibs = null;
       let scoutTimeout = null;
       let currentLib = null;
 
