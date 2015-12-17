@@ -1,13 +1,14 @@
 class Strategies::JWT < Warden::Strategies::Base
   def valid?
-    headers.key?('Authorization')
+    env.key?('HTTP_AUTHORIZATION')
   end
 
   def authenticate!
     data, meta = JWT.decode(
-      request.headers['Authorization'],
+      env['HTTP_AUTHORIZATION'],
       ENV['jwt_secret'],
-      ENV['jwt_algorithm']
+      true,
+      algorithm: ENV['jwt_algorithm']
     )
     user = User.find_by(id: data.fetch('user_id'))
     user.present? ? success!(user) : fail!('Wrong authorization token')
