@@ -1,0 +1,11 @@
+<md-button class="md-icon-button" aria-label="subscribe"
+    ng-if="Subscription.subscribed" ng-click="Subscription.cancel()">
+  <i class="fa fa-minus"></i>
+  <md-tooltip>Cancel subscription</md-tooltip>
+</md-button>
+<md-button class="md-icon-button" aria-label="subscribe"
+    ng-if="!Subscription.subscribed" ng-click="Subscription.subscribe()">
+  <i class="fa fa-plus"></i>
+  <md-tooltip>Subscribe</md-tooltip>
+</md-button>
+<span flex>{{::Subscription.lib.name}}</span>

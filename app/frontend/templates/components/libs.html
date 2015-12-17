@@ -17,11 +17,7 @@
       <md-list-item class="lib"
           ng-mouseenter="Libs.scout(lib)" ng-mouseleave="Libs.cancelScout()"
           ng-repeat="lib in (Libs.filteredLibs | limitTo: 10)">
-        <md-button class="md-icon-button" aria-label="subscribe">
-          <i class="fa fa-plus"></i>
-          <md-tooltip>Subscribe</md-tooltip>
-        </md-button>
-        <span flex>{{::lib.name}}</span>
+        <subscription lib="::lib" layout layout-align="center center"></subscription>
       </md-list-item>
       <md-button class="md-warn md-raised" ng-show="Libs.notFound()" ng-click="Libs.forceSearch()">
         Not in the list
