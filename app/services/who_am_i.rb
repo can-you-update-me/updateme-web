@@ -10,6 +10,7 @@ class WhoAmI < BaseService
       name: current_user.name,
       email: current_user.email,
       email_digest: Digest::MD5.hexdigest(current_user.email),
+      subscriptions: Subscription.where(user: current_user),
       token: JWT.encode(
         {
           user_id: current_user.id,
