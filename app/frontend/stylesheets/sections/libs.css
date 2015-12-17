@@ -1,4 +1,6 @@
 .libs {
+  padding-bottom: 16px;
+
   .listing,
   .not-found {
     max-width: 800px;
@@ -24,6 +26,7 @@
   background-color: #ddd;
   width: 600px;
   padding: 24px;
+  margin: 16px 0 8px;
   box-sizing: border-box;
   word-break: break-all;
   white-space: pre-wrap;
