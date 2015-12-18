@@ -13,6 +13,7 @@ angular.module('updateme', ['ngAnimate', 'ngMaterial', 'ngAria', 'ngRoute', 'ang
   $httpProvider.interceptors.push(function(Me) {
     let onlyCallOnObject = (func, data) => {
       if (typeof data !== 'object') { return data; }
+      if (data instanceof Array) { return data.map(_.partial(onlyCallOnObject, func)); }
       return func(data);
     };
 
