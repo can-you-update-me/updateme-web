@@ -7,6 +7,12 @@ module Api
       render json: WhoAmI.perform(current_user)
     end
 
+    def update
+      current_user.update!(user_params.except(:email))
+
+      render json: WhoAmI.perform(current_user)
+    end
+
     private
 
     def user_params

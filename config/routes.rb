@@ -22,7 +22,7 @@ Rails.application.routes.draw do
 
     resources :subscriptions, only: [:index, :create, :destroy]
 
-    resource :users, only: [:create]
+    resource :users, only: [:create, :update]
     resource :sessions, only: [:create]
   end
 
