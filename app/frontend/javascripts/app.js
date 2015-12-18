@@ -105,7 +105,7 @@ require('./components/get_started');
 require('./components/libs');
 require('./components/login');
 require('./components/profile_widget');
-require('./components/subscription');
+require('./components/lib');
 
 require('./utils/local_storage');
 require('./utils/quick_toast');

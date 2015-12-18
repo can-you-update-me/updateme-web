@@ -1,25 +1,25 @@
-let templateUrl = require('../../templates/components/subscription.html');
+let templateUrl = require('../../templates/components/lib.html');
 
 angular.module('updateme')
-.directive('subscription', function(Error) {
+.directive('lib', function(Error) {
   return {
     restrict: 'E',
     scope: true,
-    bindToController: { lib: '=' },
+    bindToController: { attrs: '=' },
     templateUrl,
     controller(Me, Subscription) {
       Subscription.list().then(
         ({ data }) => {
-          this.attrs = _.find(data.subscriptions, { libId: this.lib.id });
-          this.subscribed = !!this.attrs;
+          this.subscription = _.find(data.subscriptions, { libId: this.attrs.id });
+          this.subscribed = !!this.subscription;
         },
         Error.report
       );
 
       this.subscribe = () => {
-        Subscription.create({ libId: this.lib.id, channel: 'stable' }).then(
+        Subscription.create({ libId: this.attrs.id, channel: 'stable' }).then(
           ({ data }) => {
-            this.attrs = data.subscription;
+            this.subscription = data.subscription;
             this.subscribed = true;
             Subscription.cache.push(data.subscription);
           },
@@ -28,16 +28,16 @@ angular.module('updateme')
       };
 
       this.cancel = () => {
-        Subscription.remove(this.attrs).then(
+        Subscription.remove(this.subscription).then(
           () => {
-            _.remove(Subscription.cache, this.attrs);
-            this.attrs = null;
+            _.remove(Subscription.cache, this.subscription);
+            this.subscription = null;
             this.subscribed = false;
           },
           Error.report
         );
       };
     },
-    controllerAs: 'Subscription'
+    controllerAs: 'Lib'
   };
 });
