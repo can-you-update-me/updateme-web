@@ -1,3 +1,6 @@
+<md-button ng-href="/login" ng-if="!Profile.attrs.token">
+  login
+</md-button>
 <md-menu class="profile-widget" ng-if="Profile.attrs.token"
     md-position-mode="target-right target" md-offset="0 80">
   <div ng-click="$mdOpenMenu($event)">
@@ -5,7 +8,7 @@
   </div>
   <md-menu-content>
     <md-menu-item class="profile-link">
-      <md-button>
+      <md-button ng-href="/profile">
         <div layout="column">
           {{Profile.attrs.name}}
           <small>{{Profile.attrs.email}}</small>
