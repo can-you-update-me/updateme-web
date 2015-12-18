@@ -1,7 +1,7 @@
 let templateUrl = require('../../templates/components/libs.html');
 
 angular.module('updateme')
-.directive('libs', function() {
+.directive('libs', function(Error) {
   return {
     restrict: 'E',
     scope: false,
@@ -94,9 +94,7 @@ angular.module('updateme')
             this.filterLibs(name);
             currentLib = lib;
           },
-          error => {
-            console.error(error);
-          }
+          Error.report
         );
       };
     },

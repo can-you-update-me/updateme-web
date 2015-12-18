@@ -1,7 +1,7 @@
 let templateUrl = require('../../templates/components/subscription.html');
 
 angular.module('updateme')
-.directive('subscription', function() {
+.directive('subscription', function(Error) {
   return {
     restrict: 'E',
     scope: true,
@@ -12,7 +12,8 @@ angular.module('updateme')
         ({ data }) => {
           this.attrs = _.find(data.subscriptions, { libId: this.lib.id });
           this.subscribed = !!this.attrs;
-        }
+        },
+        Error.report
       );
 
       this.subscribe = () => {
@@ -22,9 +23,7 @@ angular.module('updateme')
             this.subscribed = true;
             Subscription.cache.push(data.subscription);
           },
-          error => {
-            console.error(error);
-          }
+          Error.report
         );
       };
 
@@ -35,9 +34,7 @@ angular.module('updateme')
             this.attrs = null;
             this.subscribed = false;
           },
-          error => {
-            console.error(error);
-          }
+          Error.report
         );
       };
     },

@@ -109,3 +109,4 @@ require('./components/subscription');
 require('./utils/local_storage');
 require('./utils/quick_toast');
 require('./utils/oauth');
+require('./utils/error');
