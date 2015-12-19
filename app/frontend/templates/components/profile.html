@@ -1,6 +1,6 @@
-<md-content layout="column" layout-align="start center">
-  <section class="v-margin-lg" layout>
-    <img ng-src="{{Profile.attrs.avatarURL}}" alt="avatar">
+<md-content class="profile-page" layout="column" layout-align="start center">
+  <section class="v-margin-lg" layout="row" layout-align="center center">
+    <img class="avatar" ng-src="{{Profile.attrs.avatarURL}}" alt="avatar">
     <div class="h-padding-md" layout="column" layout-align="center center">
       <md-input-container>
         <input ng-model="Profile.attrs.name" ng-disabled="!Profile.editing">
