@@ -1,5 +1,7 @@
 module Api
   class UsersController < BaseController
+    before_action :require_user!, only: [:update]
+
     def create
       user = User.create!(user_params)
       warden.authenticate!(:password, store: false)

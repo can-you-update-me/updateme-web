@@ -16,6 +16,9 @@ angular.module('updateme')
       Me.session = {};
       $location.url('/');
       return $q.resolve();
+    },
+    update(params) {
+      return $http.patch('/api/users', params);
     }
   };
 
