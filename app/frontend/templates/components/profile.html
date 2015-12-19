@@ -1,0 +1,28 @@
+<md-content layout="column" layout-align="start center">
+  <section class="v-margin-lg" layout>
+    <img ng-src="{{Profile.attrs.avatarURL}}" alt="avatar">
+    <div class="h-padding-md" layout="column" layout-align="center center">
+      <md-input-container>
+        <input ng-model="Profile.attrs.name" ng-disabled="!Profile.editing">
+      </md-input-container>
+      <md-input-container>
+        <input ng-model="Profile.attrs.email" disabled>
+      </md-input-container>
+      <md-button class="md-primary md-raised"
+          ng-hide="Profile.editing" ng-click="Profile.edit()">edit profile</md-button>
+      <md-button class="md-primary md-raised"
+          ng-show="Profile.editing" ng-click="Profile.save()">save profile</md-button>
+    </div>
+  </section>
+  <section layout="column">
+    <md-list ng-repeat="(groupName, group) in Profile.groups">
+      <md-subheading>
+        <h3>{{::Profile.prettifyName(groupName)}}</h3>
+      </md-subheading>
+      <md-list-item ng-repeat="subscription in group">
+        <span class="h-margin-lg" flex>{{::subscription.lib.name}}</span>
+        <span>{{::subscription.channel}}</span>
+      </md-list-item>
+    </md-list>
+  </section>
+</md-content>

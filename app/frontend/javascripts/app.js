@@ -2,7 +2,8 @@ let Templates = {
   home: require('../templates/home.html'),
   getStarted: require('../templates/pages/get_started.html'),
   libs: require('../templates/pages/libs.html'),
-  login: require('../templates/pages/login.html')
+  login: require('../templates/pages/login.html'),
+  profile: require('../templates/pages/profile.html')
 };
 
 angular.module('updateme', ['ngAnimate', 'ngMaterial', 'ngAria', 'ngRoute', 'angular-loading-bar'])
@@ -13,6 +14,7 @@ angular.module('updateme', ['ngAnimate', 'ngMaterial', 'ngAria', 'ngRoute', 'ang
   $httpProvider.interceptors.push(function(Me) {
     let onlyCallOnObject = (func, data) => {
       if (typeof data !== 'object') { return data; }
+      if (data instanceof Array) { return data.map(_.partial(onlyCallOnObject, func)); }
       return func(data);
     };
 
@@ -74,6 +76,7 @@ angular.module('updateme', ['ngAnimate', 'ngMaterial', 'ngAria', 'ngRoute', 'ang
     .when('/', { templateUrl: Templates.home })
     .when('/get-started', { templateUrl: Templates.getStarted })
     .when('/libs/:libType', { templateUrl: Templates.libs, resolve: requireUser })
+    .when('/profile', { templateUrl: Templates.profile, resolve: requireUser })
     .when('/login', { templateUrl: Templates.login })
     .otherwise({ redirectTo: '/' });
 })
@@ -104,8 +107,10 @@ require('./components/get_started');
 require('./components/libs');
 require('./components/login');
 require('./components/profile_widget');
-require('./components/subscription');
+require('./components/profile');
+require('./components/lib');
 
 require('./utils/local_storage');
 require('./utils/quick_toast');
 require('./utils/oauth');
+require('./utils/error');

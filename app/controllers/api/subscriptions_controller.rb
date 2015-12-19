@@ -3,7 +3,7 @@ module Api
     before_action :require_user!
 
     def index
-      render json: Subscription.where(user: current_user)
+      render json: current_user.subscriptions
     end
 
     def create

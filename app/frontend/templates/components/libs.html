@@ -17,7 +17,7 @@
       <md-list-item class="lib"
           ng-mouseenter="Libs.scout(lib)" ng-mouseleave="Libs.cancelScout()"
           ng-repeat="lib in (Libs.filteredLibs | limitTo: 10)">
-        <subscription lib="::lib" layout layout-align="center center"></subscription>
+        <lib attrs="::lib" layout layout-align="center center"></lib>
       </md-list-item>
       <md-button class="md-warn md-raised" ng-show="Libs.notFound()" ng-click="Libs.forceSearch()">
         Not in the list

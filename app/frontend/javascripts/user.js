@@ -16,6 +16,9 @@ angular.module('updateme')
       Me.session = {};
       $location.url('/');
       return $q.resolve();
+    },
+    update(params) {
+      return $http.patch('/api/users', params);
     }
   };
 
@@ -27,7 +30,9 @@ angular.module('updateme')
 
   return {
     attrs: cachedAttrs,
-    session: { nextPage: {} },
+    session: {
+      nextPage: {}
+    },
     update(attrs) {
       _.assign(this.attrs, attrs);
       this.cache(this.attrs);
