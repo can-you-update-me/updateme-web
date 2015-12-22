@@ -3,7 +3,7 @@ module Api
     before_action :require_user!
 
     def index
-      render json: current_user.subscriptions
+      render json: current_user.subscriptions.includes(:lib)
     end
 
     def create
