@@ -12,7 +12,7 @@ body {
 }
 
 .fa {
-  vertical-align: middle;
+  vertical-align: baseline;
 }
 
 .header.main {
