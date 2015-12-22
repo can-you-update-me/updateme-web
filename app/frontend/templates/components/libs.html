@@ -4,11 +4,17 @@
       Looking for a {{::Libs.name}}?
     </h1>
   </md-toolbar>
-  <md-input-container layout>
-    <i class="fa fa-search icon-search"></i>
-    <input type="text" ng-model="Libs.search" ng-change="Libs.filterLibs(Libs.search)"
-        ng-model-options="{ debounce: 400 }" aria-label="search">
-  </md-input-container>
+  <section layout layout-align="center center">
+    <md-button ng-href="/get-started">
+      <i class="fa fa-arrow-left"></i>
+      back
+    </md-button>
+    <md-input-container layout>
+      <i class="fa fa-search icon-search"></i>
+      <input type="text" ng-model="Libs.search" ng-change="Libs.filterLibs(Libs.search)"
+          ng-model-options="{ debounce: 400 }" aria-label="search">
+    </md-input-container>
+  </section>
   <div class="listing" ng-if="Libs.resultExist" layout>
     <md-list class="browse-libs">
       <md-subheader class="md-primary">
