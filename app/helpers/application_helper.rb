@@ -1,12 +1,4 @@
 module ApplicationHelper
-  GITHUB_OAUTH_URL = URI('https://github.com').tap do |uri|
-    uri.path = '/login/oauth/authorize'
-    uri.query = {
-      client_id: ENV['github_client_id'],
-      scope: 'user:email'
-    }.to_query
-  end.freeze
-
   def json_preload(load_key, hash)
     content_tag(
       :script,
@@ -17,12 +9,8 @@ module ApplicationHelper
     )
   end
 
-  def oauth_links
-    { github: github_oauth_url }
-  end
-
-  def github_oauth_url
-    GITHUB_OAUTH_URL
+  def oauth_client_ids
+    { github: ENV['github_client_id'] }
   end
 
   def who_am_i(who = current_user)

@@ -1,5 +1,14 @@
+let KeyCases = require('./key_cases');
+
 angular.module('updateme')
-.factory('Oauth', function($window, $q, Preload, Me) {
+.factory('OauthLinks', function(Preload) {
+  let { github } = Preload.get('oauthClientIds');
+
+  return {
+    github: `https://github.com/login/oauth/authorize?client_id=${github}&scope=user:email`
+  };
+})
+.factory('Oauth', function($window, $q, OauthLinks, Me) {
   let oauthWindowFeatures = [
     'width=800',
     'height=600',
@@ -7,17 +16,15 @@ angular.module('updateme')
     'scrollbars=yes'
   ].join(',');
 
-  let oauthLinks = Preload.get('oauthLinks');
-
   function Oauth(service, oauthEnd) {
-    let oauthURL = oauthLinks[service];
+    let oauthURL = OauthLinks[service];
     let oauthWindow = window.open(oauthURL, 'OAuth', oauthWindowFeatures);
 
     let tryCount = 0;
     let pollTimeout = null;
 
     let listener = ({ data }) => {
-      Me.cache(data);
+      Me.cache(KeyCases.deepCamelKeys(data));
       oauthEnd.resolve(data);
 
       oauthWindow.close();
