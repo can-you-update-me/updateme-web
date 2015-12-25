@@ -6,35 +6,23 @@ let Templates = {
   profile: require('../templates/pages/profile.html')
 };
 
+let KeyCases = require('./utils/key_cases');
+
 angular.module('updateme', ['ngAnimate', 'ngMaterial', 'ngAria', 'ngRoute', 'angular-loading-bar'])
 .config(function($httpProvider, $mdThemingProvider, $compileProvider, $locationProvider, $routeProvider) {
   $httpProvider.defaults.headers.common['X-CSRF-Token'] =
     document.querySelector('meta[name=csrf-token]').content;
 
   $httpProvider.interceptors.push(function(Me) {
-    let onlyCallOnObject = (func, data) => {
-      if (typeof data !== 'object') { return data; }
-      if (data instanceof Array) { return data.map(_.partial(onlyCallOnObject, func)); }
-      return func(data);
-    };
-
-    let deepSnakeKeys = _.partial(onlyCallOnObject, data => {
-      return _(data).map((v, k) => [_.snakeCase(k), deepSnakeKeys(v)]).object().value();
-    });
-
-    let deepCamelKeys = _.partial(onlyCallOnObject, data => {
-      return _(data).map((v, k) => [_.camelCase(k), deepCamelKeys(v)]).object().value();
-    });
-
     return {
       request(config) {
         config.headers.Authorization = Me.attrs.token;
-        config.data = deepSnakeKeys(config.data);
+        config.data = KeyCases.deepSnakeKeys(config.data);
 
         return config;
       },
       response(response) {
-        response.data = deepCamelKeys(response.data);
+        response.data = KeyCases.deepCamelKeys(response.data);
 
         return response;
       }
