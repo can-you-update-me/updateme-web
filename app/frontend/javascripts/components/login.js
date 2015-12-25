@@ -14,7 +14,7 @@ angular.module('updateme')
       };
 
       let redirectNextOrHome = () => {
-        $location.url(Me.session.nextPage.url || '/');
+        $location.url(_.get(Me.session, 'nextPage.url') || '/');
       };
 
       this.login = () => {

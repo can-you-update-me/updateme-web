@@ -2,7 +2,7 @@ angular.module('updateme')
 .factory('Subscription', function($http, $q, Me) {
   let Subscription = {
     get cache() {
-      return Me.session.subscriptions.data.subscriptions;
+      return _.get(Me.session, 'subscriptions.data.subscriptions');
     },
     list: () => {
       let session = Me.session;

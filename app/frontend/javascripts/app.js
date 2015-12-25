@@ -51,7 +51,7 @@ angular.module('updateme', ['ngAnimate', 'ngMaterial', 'ngAria', 'ngRoute', 'ang
     }],
     updateParams: ['$q', '$route', 'Me', ($q, $route, Me) => {
       if (Me.attrs.token &&
-          Me.session.nextPage.url == $route.current.$$route.originalPath) {
+          _.get(Me.session, 'nextPage.url') == $route.current.$$route.originalPath) {
         $route.updateParams(Me.session.nextPage.params);
         Me.session.nextPage = {};
       }
