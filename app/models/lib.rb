@@ -14,8 +14,8 @@ class Lib < ActiveRecord::Base
 
   validates_uniqueness_of :name, scope: :type
 
-  def scout
-    self.class::SCOUT.perform(self)
+  def scout(options = {})
+    self.class::SCOUT.perform(self, **options)
   end
 
   def active_model_serializer

@@ -1,7 +1,7 @@
 class Scouts::Gems < Scout
   base_uri 'rubygems.org/api/v1'
 
-  def perform
+  def data
     api.get("/gems/#{@lib.name}.json")
   end
 

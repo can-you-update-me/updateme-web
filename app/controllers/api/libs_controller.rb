@@ -12,7 +12,7 @@ module Api
 
     def scout
       if id = params[:id]
-        render json: Lib.find(id).scout
+        render json: Lib.find(id).scout(channel: :data)
       else
         render json: lib_of_type.new(name: params[:name]).scout
       end

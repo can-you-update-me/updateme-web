@@ -7,11 +7,23 @@ class Scouts::Github < Scout
     client_secret: ENV['github_client_secret']
   )
 
-  def perform
+  def data
     api.get("/repos/#{@lib.name}/readme")
   end
 
   def latest
+
+  end
+
+  def stable
+
+  end
+
+  def tags
     api.get("/repos/#{@lib.name}/git/refs/tags")
+  end
+
+  def releases
+    api.get("/repos/#{@lib.name}/releases")
   end
 end
