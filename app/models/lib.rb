@@ -3,7 +3,8 @@ class Lib < ActiveRecord::Base
     Libs::RubyGem,
     Libs::JsPackage,
     Libs::PythonPackage,
-    Libs::GithubRepo
+    Libs::GithubRepo,
+    Libs::RustCrate
   ].freeze
 
   Slugs = Types.map do |type|

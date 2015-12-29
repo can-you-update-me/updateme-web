@@ -16,6 +16,9 @@ class HomeController < ApplicationController
       {
         name: 'GitHub Repo',
         devicon: 'github'
+      },
+      {
+        name: 'Rust Crate'
       }
     ].each do |lib|
       lib[:key] = lib[:name].downcase.gsub(/\s+/, '-')
