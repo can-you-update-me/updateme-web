@@ -4,13 +4,13 @@
   </md-toolbar>
   <div class="libs-container" layout layout-align="center center" layout-wrap>
     <md-button class="lib" flex="20" aria-label="button"
-        ng-repeat="lib in GetStarted.libs" ng-href="/libs/{{::lib.key}}">
-      <i class="lib-icon devicon-{{::lib.devicon}}-plain"></i>
-      <span class="lib-name" ng-bind="::lib.name"></span>
+        ng-repeat="libType in GetStarted.libTypes" ng-href="/libs/{{::libType.key}}">
+      <i class="lib-icon devicon-{{::libType.devicon}}-plain" ng-if="::libType.devicon"></i>
+      <span class="lib-type-name" ng-bind="::libType.name"></span>
     </md-button>
     <md-button class="lib" flex="20" ng-href="https://github.com/goupdateme/updateme">
       <i class="lib-icon fa fa-plus"></i>
-      <span class="lib-name">Add/Request More</span>
+      <span class="lib-type-name">Add/Request More</span>
     </md-button>
   </div>
 </md-content>

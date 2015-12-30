@@ -6,8 +6,7 @@ angular.module('updateme')
     restrict: 'E',
     scope: false,
     templateUrl,
-    controller($routeParams, $timeout, Preload, Lib) {
-      let libTypes = Preload.get('libs');
+    controller($routeParams, $timeout, Lib, libTypes) {
       let typeKey = $routeParams.libType;
 
       let libType = _.find(libTypes, 'key', typeKey);

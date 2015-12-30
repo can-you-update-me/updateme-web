@@ -6,8 +6,8 @@ angular.module('updateme')
     restrict: 'E',
     scope: false,
     templateUrl,
-    controller(Preload) {
-      this.libs = Preload.get('libs');
+    controller(libTypes) {
+      this.libTypes = libTypes;
     },
     controllerAs: 'GetStarted'
   };

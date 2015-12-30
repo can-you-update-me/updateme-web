@@ -8,4 +8,30 @@ angular.module('updateme')
   };
 
   return Lib;
+})
+.factory('libTypes', function() {
+  let libTypes = [
+    {
+      name: 'Ruby Gem',
+      devicon: 'ruby'
+    },
+    {
+      name: 'JS Package',
+      devicon: 'javascript'
+    },
+    {
+      name: 'Python Package',
+      devicon: 'python'
+    },
+    {
+      name: 'GitHub Repo',
+      devicon: 'github'
+    }
+  ];
+
+  libTypes.forEach(libType => {
+    libType.key = _.kebabCase(libType.name.toLowerCase());
+  });
+
+  return libTypes;
 });
