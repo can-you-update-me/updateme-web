@@ -88,10 +88,10 @@ angular.module('updateme')
 
       this.create = (name) => {
         Lib.create({ name, type: typeKey }).then(
-          ({ data: lib }) => {
-            knownLibs.push(lib);
+          ({ data }) => {
+            knownLibs.push(data.lib);
             this.filterLibs(name);
-            currentLib = lib;
+            currentLib = data;
           },
           Error.report
         );
