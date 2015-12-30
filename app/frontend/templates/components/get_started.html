@@ -5,7 +5,7 @@
   <div class="libs-container" layout layout-align="center center" layout-wrap>
     <md-button class="lib" flex="20" aria-label="button"
         ng-repeat="libType in GetStarted.libTypes" ng-href="/libs/{{::libType.key}}">
-      <i class="lib-icon devicon-{{::libType.devicon}}-plain" ng-if="::libType.devicon"></i>
+      <i class="lib-icon" ng-class="libType.fontClass" ng-if="::libType.fontClass"></i>
       <img ng-class="::libType.iconClass" ng-src="{{libType.icon}}" ng-if="libType.icon" alt="{{::libType.name}}">
       <span class="lib-type-name" ng-bind="::libType.name"></span>
     </md-button>

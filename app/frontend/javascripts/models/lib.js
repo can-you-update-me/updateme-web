@@ -13,19 +13,19 @@ angular.module('updateme')
   let libTypes = [
     {
       name: 'Ruby Gem',
-      devicon: 'ruby'
+      fontClass: 'devicon-ruby-plain'
     },
     {
       name: 'JS Package',
-      devicon: 'javascript'
+      fontClass: 'devicon-javascript-plain'
     },
     {
       name: 'Python Package',
-      devicon: 'python'
+      fontClass: 'devicon-python-plain'
     },
     {
       name: 'GitHub Repo',
-      devicon: 'github'
+      fontClass: 'fa fa-github'
     },
     {
       name: 'Rust Crate',
