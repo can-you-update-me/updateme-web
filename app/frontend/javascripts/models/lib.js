@@ -26,6 +26,11 @@ angular.module('updateme')
     {
       name: 'GitHub Repo',
       devicon: 'github'
+    },
+    {
+      name: 'Rust Crate',
+      icon: 'https://www.rust-lang.org/logos/rust-logo-blk.svg',
+      iconClass: 'rust-icon'
     }
   ];
 

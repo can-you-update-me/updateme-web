@@ -26,4 +26,18 @@
   .lib-type-name {
     display: block;
   }
+
+  .rust-icon {
+    height: 108px;
+    opacity: 0.5;
+    vertical-align: middle;
+    transform: scale(1.2) translate(0, -5px);
+    transition: opacity .3s;
+  }
+
+  .lib:hover {
+    .rust-icon {
+      opacity: 1;
+    }
+  }
 }
