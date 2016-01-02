@@ -18,7 +18,7 @@ angular.module('updateme')
 
   function Oauth(service, oauthEnd) {
     let oauthURL = OauthLinks[service];
-    let oauthWindow = window.open(oauthURL, 'OAuth', oauthWindowFeatures);
+    let oauthWindow = $window.open(oauthURL, 'OAuth', oauthWindowFeatures);
 
     let tryCount = 0;
     let pollTimeout = null;
